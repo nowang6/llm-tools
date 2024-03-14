@@ -16,9 +16,19 @@ prompt_template = PromptTemplate.from_template(
 datasets = load_dataset("glue", "sst2")
 val_datasets = datasets["validation"]
 
+total, correct = 0, 0 
 for line in val_datasets:
   sentence = line['sentence']
   label = line['label']
   prompt =  prompt_template.format(sentence=sentence)
-  responds = model.chat(tokenizer, prompt, temperature=0.8, top_p=0.8)
-  print(responds)
+  pred = model.chat(tokenizer, prompt, temperature=0.8, top_p=0.8)
+  mapping = {
+        "positive": 1,
+        "negative": 0
+    }
+  pred = mapping.get(pred, -1)
+  if pred == label:
+    correct += 1
+  total += 1
+
+print(f'{correct} of {total} is correct, accuracy rate is {correct/total}')
