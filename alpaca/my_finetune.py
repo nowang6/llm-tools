@@ -52,6 +52,7 @@ prompt_template_name = "alpaca"  # The prompt template to use, will default to a
 
 tokenizer = LlamaTokenizer.from_pretrained(base_model,trust_remote_code=True) #加载token
 tokenizer.padding_side = "left"
+tokenizer.pad_token_id = (0)
 
 
 def tokenize(prompt, add_eos_token=True):
