@@ -11,7 +11,9 @@ from transformers import (AutoModelForCausalLM, AutoTokenizer,
 from tqdm import tqdm
 import os
 
-model = os.getenv("MODEL")
+#model = os.getenv("MODEL")
+token = os.getenv("HF_TOKEN")
+model = meta-llama/Llama-2-7b-hf
 
 
 def sample_requests(
@@ -129,7 +131,7 @@ def run_hf(
 ) -> float:
     assert not use_beam_search
     llm = AutoModelForCausalLM.from_pretrained(
-        model, torch_dtype=torch.float16, trust_remote_code=trust_remote_code)
+        model, token = token,torch_dtype=torch.float16, trust_remote_code=true)
     if llm.config.model_type == "llama":
         # To enable padding in the HF backend.
         tokenizer.pad_token = tokenizer.eos_token
