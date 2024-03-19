@@ -13,7 +13,7 @@ import os
 
 #model = os.getenv("MODEL")
 token = os.getenv("HF_TOKEN")
-model = meta-llama/Llama-2-7b-hf
+model = "meta-llama/Llama-2-7b-hf"
 
 
 def sample_requests(
@@ -131,7 +131,7 @@ def run_hf(
 ) -> float:
     assert not use_beam_search
     llm = AutoModelForCausalLM.from_pretrained(
-        model, token = token,torch_dtype=torch.float16, trust_remote_code=true)
+        model, token = token,torch_dtype=torch.float16, trust_remote_code=True)
     if llm.config.model_type == "llama":
         # To enable padding in the HF backend.
         tokenizer.pad_token = tokenizer.eos_token
@@ -247,15 +247,15 @@ if __name__ == "__main__":
                         help="Path to the dataset.")
     parser.add_argument("--input-len",
                         type=int,
-                        default=128,
+                        default=64,
                         help="Input prompt length for each request")
     parser.add_argument("--hf_max_batch_size",
                         type=int,
-                        default=32,
+                        default=8,
                         help="Input prompt length for each request")
     parser.add_argument("--output-len",
                         type=int,
-                        default=512,
+                        default=64,
                         help="Output length for each request. Overrides the "
                         "output length from the dataset.")
     parser.add_argument("--model", type=str, default=model)
