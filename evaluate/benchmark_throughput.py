@@ -245,15 +245,15 @@ if __name__ == "__main__":
                         help="Path to the dataset.")
     parser.add_argument("--input-len",
                         type=int,
-                        default=16,
+                        default=128,
                         help="Input prompt length for each request")
     parser.add_argument("--hf_max_batch_size",
                         type=int,
-                        default=16,
+                        default=32,
                         help="Input prompt length for each request")
     parser.add_argument("--output-len",
                         type=int,
-                        default=32,
+                        default=512,
                         help="Output length for each request. Overrides the "
                         "output length from the dataset.")
     parser.add_argument("--model", type=str, default=model)
