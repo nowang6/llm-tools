@@ -3,9 +3,7 @@ from diffusers import StableDiffusionPipeline, DPMSolverMultistepScheduler
 import gradio as gr
 import os
 
-os.environ["TRANSFORMERS_OFFLINE"]="1"
-
-model_id = "stabilityai/stable-diffusion-2-1"
+model_id = "runwayml/stable-diffusion-v1-5"
 
 # Use the DPMSolverMultistepScheduler (DPM-Solver++) scheduler here instead
 pipe = StableDiffusionPipeline.from_pretrained(model_id, torch_dtype=torch.float16)
