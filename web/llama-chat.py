@@ -35,4 +35,4 @@ demo = gr.Interface(
   outputs=gr.Textbox(label="Answer (inference):")
 )
 
-demo.launch()
+demo.launch(server_name="0.0.0.0")
