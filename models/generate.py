@@ -1,15 +1,29 @@
 
+from transformers import AutoTokenizer, AutoModelForCausalLM
+from transformers import LlamaTokenizerFast, LlamaForCausalLM
+import torch
+from torch.nn import CrossEntropyLoss
 
 
-model_path = "uer/gpt2-chinese-cluecorpussmall"
-tokenizer = BertTokenizer.from_pretrained(model_path)
-model = GPT2LMHeadModel.from_pretrained(model_path,local_files_only=True)
+model_id = "/home/niwang/models/Meta-Llama-3-8B-Instruct"
+
+tokenizer = LlamaTokenizerFast.from_pretrained(model_id)
+model = LlamaForCausalLM.from_pretrained(
+    model_id,
+    torch_dtype=torch.bfloat16,
+    device_map="auto",
+)
+
+tokenizer.add_special_tokens({'pad_token': '[PAD]'})
 
 
-Ssentences = "who are you?"
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-inputs = tokenizer(sentences, padding='max_length', max_length=50, truncation=True, return_tensors="pt").to(device)
+sentences = ["who are you?", "who are you?"]
+
+
+inputs = tokenizer(sentences, padding='max_length', max_length=50, truncation=True, return_tensors="pt").to(model.device)
+
+
 
 inputs.keys()
 
@@ -17,7 +31,7 @@ inputs.keys()
 bs, sl = inputs['input_ids'].size()
 
 
-outputs = model(**inputs, labels=inputs['input_ids'])
+outputs = model.forward(**inputs, labels=inputs['input_ids'])
 logits = outputs["logits"]
 logits.shape
 # 错位构造logits和label
@@ -38,4 +52,4 @@ meanloss.shape
 
 # 计算ppl
 ppls = torch.exp(meanloss).cpu().numpy().tolist()
-return ppls``
+print(ppls)
