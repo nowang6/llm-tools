@@ -1,0 +1,18 @@
+{
+    "Time taken for tests (s)": 57.173,
+    "Number of concurrency": 10,
+    "Total requests": 100,
+    "Succeed requests": 100,
+    "Failed requests": 0,
+    "Throughput(average tokens/s)": 435.347,
+    "Average QPS": 1.749,
+    "Average latency (s)": 5.437,
+    "Average time to first token (s)": 0.062,
+    "Average time per output token (s)": 0.022,
+    "Average input tokens per request": 49.89,
+    "Average output tokens per request": 248.9,
+    "Average package latency (s)": 0.022,
+    "Average package per request": 247.36,
+    "Expected number of requests": 100,
+    "Result DB path": "./outputs/20250402_134035/qwen2.5/benchmark_data.db"
+}
