@@ -13,10 +13,10 @@ api_meta_template = dict(round=[
 ], )
 models = [
     dict(
-        abbr='glm4-9b-chat',
+        abbr='Qwen3-8B',
         type=OpenAI,
-        path='glm4-9b-chat',
-        openai_api_base = "http://xxxx:18080/v1/chat/completions",
+        path='Qwen3-8B',
+        openai_api_base = "http://my:8000/v1/chat/completions",
         key='empty',  
         meta_template=api_meta_template,
         query_per_second=1,
