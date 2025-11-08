@@ -1,12 +1,12 @@
-from transformers import Qwen3ForCausalLM, AutoTokenizer
+from transformers import Qwen2ForCausalLM, AutoTokenizer
 import torch.nn.functional as F
 import torch
 
-model_path = "/data/models/Qwen2.5-7B"
+model_path = "/root/autodl-tmp/Qwen2.5-72B"
 
 # load the tokenizer and the model
 tokenizer = AutoTokenizer.from_pretrained(model_path)
-model = Qwen3ForCausalLM.from_pretrained(
+model = Qwen2ForCausalLM.from_pretrained(
     model_path,
     torch_dtype="auto",
     device_map="auto"
