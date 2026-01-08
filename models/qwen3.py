@@ -1,4 +1,4 @@
-from transformers import Qwen3ForCausalLM, AutoTokenizer
+from transformers import Qwen3ForCausalLM, AutoTokenizer, Qwen3MoeForCausalLM
 import torch.nn.functional as F
 import torch
 
@@ -6,7 +6,7 @@ model_path = "/data/models/Qwen2.5-7B"
 
 # load the tokenizer and the model
 tokenizer = AutoTokenizer.from_pretrained(model_path)
-model = Qwen3ForCausalLM.from_pretrained(
+model = Qwen3MoeForCausalLM.from_pretrained(
     model_path,
     torch_dtype="auto",
     device_map="auto"
